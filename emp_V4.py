@@ -193,6 +193,23 @@ def delete_menu():
     tk.Button(frame_2, text="Delete single column", command=error).pack(side="top", fill="x", padx="5")
 
 
+# search by first name???
+def check():
+    global firstname
+    with open('employee_file.txt') as f:
+        datafile = f.readlines()
+    for line in datafile:
+        if firstname in line:
+            return True
+    return False
+
+
+if check():
+    print('True, the employee exists')
+else:
+    print('False, the employee does not exist')
+
+
 # Main window configuration
 gui = tk.Tk()
 gui.geometry("500x300")
