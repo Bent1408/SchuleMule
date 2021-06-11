@@ -188,7 +188,7 @@ def export_single():
 def read_menu():
     clear_frame2()
 
-    tk.Button(frame_2, text="Show all datasets", command=open_file).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Show all datasets", command=open_employee_file).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Show single dataset", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Show empty fields", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="filter...", command=error).pack(side="top", fill="x", padx="5")
@@ -205,6 +205,7 @@ def delete_menu():
     clear_frame2()
 
     tk.Button(frame_2, text="Delete all", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Delete employee", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single row", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single column", command=error).pack(side="top", fill="x", padx="5")
 
