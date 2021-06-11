@@ -204,6 +204,15 @@ def update_menu():
     tk.Button(frame_2, text="Update single dataset", command=error).pack(side="top", fill="x", padx="5")
 
 
+def update_single():
+    x = input("Search for Parameter to change:")
+    z = input("Insert your changes:")
+    f = open("employee_file.txt", "+")
+    for line in f:
+        if line.contains(x):
+            newline = line.replace(x, z)
+
+
 
 def delete_menu():
     clear_frame2()
