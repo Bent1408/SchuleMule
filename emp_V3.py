@@ -1,4 +1,8 @@
+# My EMP will be saved as a simple text file. This makes it easy for everyone to open, read and edit it.
 import datetime
+
+# list of all saved employees
+employees = []
 
 
 def print_choose():
@@ -38,47 +42,51 @@ def create_menu():
 
 
 def add_employee():
-    print("Please provide the following information to add the employee. ")
-    firstname = str(input("First name of the employee: "))
-    lastname = str(input("Last name of the employee: "))
-    date_entry = input("Birthday in YYYY-MM-DD format: ")
-    year, month, day = map(int, date_entry.split("-"))
+    global employees
+    # Instructions output
+    f = open("all_employees.txt", "a")
+    print("Please add the employee data!")
+    import datetime
+    firstname = str(input("please enter the firstname of the employee:"))
+    lastname = str(input("please enter the lastname of the employee:"))
+    date_entry = input('Enter the birthday of the employee in YYYY-MM-DD format:')
+    year, month, day = map(int, date_entry.split('-'))
     date1 = datetime.date(year, month, day)
     x = datetime.datetime.now()
     age = x.year - date1.year
+    # print (date1)
+    # print(x.year)
+    # print(age)
 
-    address = str(input("Address: "))
-    department = str(input("Department: "))
-    phone = int(input("Phone number: "))
-    gender = str(input("Gender: "))
-    drivers_license = str(input("Driver's Licence Category: "))
-    religion = str(input("Religion: "))
-    health = str(input("Health Insurance: "))
-    marital_status = str(input("Marital status: "))
-    email_address = str(input("Email address: "))
-    superior = str(input("Superior: "))
-    date_entry_2 = input("Entry date in YYYY-MM-DD format: ")
-    i_d = int(input("ID number: "))
+    address = str(input("please enter the address of the employee:"))
+    department = str(input("please enter the department of the employee:"))
+    phone = int(input("please enter the phone number of the employee:"))
+    relation = str(input("please enter the relationship of the employee:"))
+    gender = str(input("please enter the gender of the employee:"))
+    drivers_license = str(input("please enter the driving license class of the employee:"))
+    religion = str(input("please enter the religion of the employee:"))
+    health = str(input("please enter the health insurance of the employee:"))
+    marital = str(input("please enter the marital status of the employee:"))
+    email = str(input("please enter the email address of the employee:"))
+    superior = str(input("please enter the superior of the employee:"))
+    date_entry_2 = input('Enter the entry date of the employee in YYYY-MM-DD format:')
+    year, month, day = map(int, date_entry.split('-'))
+    date2 = datetime.date(year, month, day)
+    identification = int(input("please enter the ID number of the employee:"))
+    print("The employee", lastname, firstname, "was added")
+    employee = [{'first_name': firstname, 'last_name': lastname, 'birthday': date_entry, 'address': address,
+                 'department': department, 'phone_number': phone, 'employment': relation, 'gender': gender,
+                 'drivers_license': drivers_license, 'religion': religion, 'health_insurance': health,
+                 'martial_status': marital, 'Email': email, 'superior': superior, 'date_entry': date_entry_2, 'date2':
+                     date2, 'identification': identification, age: "age"}]
+
+    employees = employees + employee
+
+    # Confirmation
+    print()
     print("The employee", firstname, lastname, "was added successfully.")
-    employee = [{'ID': i_d, 'First name': firstname, 'Last name': lastname, 'Department': department, 'Age': age,
-                 'Address': address, 'Gender': gender, 'Phone#': phone, 'Religion': religion, 'Health Ins.': health,
-                 'Marital St.': marital_status, 'DL': drivers_license, 'Email': email_address, 'Superior': superior,
-                 'Entry Date': date_entry_2}]
-
-    # writes the created employee into a text file
-    file = open("employee_file.txt", "a")
-    file.write(str(employee) + "\n")
-    file.close()
-
-    input("Press ENTER to exit back to the menu.")
-
-
-def open_employee_file():
-    # opens the text file where the employees are saved and prints each line
-    f = open("employee_file.txt", "r")
-    r = f.readlines()
-    for element in r:
-        print(element)
+    # writing and closing the added employee
+    f.write(str(employee) + "\n")
     f.close()
 
 
@@ -89,7 +97,12 @@ def read_menu():
               "4. show empty fields\n5. back")
         selection = choose_between(1, 5)
         if selection == "1":
-            open_employee_file()
+            # opening and showing the list of all employees
+            j = open("all_employees.txt", "r")
+            d = j.readlines()
+            for element in d:
+                print(element)
+            j.close()
         elif selection == "2":
             print_not_developed()
         elif selection == "3":
@@ -100,6 +113,31 @@ def read_menu():
             break
         else:
             print_not_valid()
+
+
+def print_all():
+    counter = 1
+    for employee in employees:
+        print("Employee #", counter)
+        print("The employee's ID:", employee["id"])
+        print("The employee's Firstname:", employee["firstname"])
+        print("The employee's Lastname:", employee["lastname"])
+        print("The employee's Age:", round(abs((datetime.datetime.now() - employee["date_of_birth"]).days / 365)))
+        print("The employee's Address:", employee["address"])
+        print("The employee's Department:", employee["department"])
+        print("The employee's Phone number:", employee["phone_number"])
+        print("The employee's employment status:", employee["employment_status"])
+        print("The employee's gender:", employee["gender"])
+        print("The employee's driver's License(s):", employee["drivers_license"])
+        print("The employee's religion:", employee["religion"])
+        print("The employee's health insurance:", employee["health_insurance"])
+        print("The employee's marital status:", employee["marital_status"])
+        print("The employee's salary:", employee["salary"])
+        print("The employee's e-mail address:", employee["email"])
+        print("The employee's superior:", employee["superior"])
+        print("The employee's entry date:", employee["entry_date"].date())
+        print("\n")
+        counter += 1
 
 
 def update_menu():
