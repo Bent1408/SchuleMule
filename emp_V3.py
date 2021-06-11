@@ -112,31 +112,6 @@ def read_menu():
             print_not_valid()
 
 
-def print_all():
-    counter = 1
-    for employee in employees:
-        print("Employee #", counter)
-        print("The employee's ID:", employee["id"])
-        print("The employee's Firstname:", employee["firstname"])
-        print("The employee's Lastname:", employee["lastname"])
-        print("The employee's Age:", round(abs((datetime.datetime.now() - employee["date_of_birth"]).days / 365)))
-        print("The employee's Address:", employee["address"])
-        print("The employee's Department:", employee["department"])
-        print("The employee's Phone number:", employee["phone_number"])
-        print("The employee's employment status:", employee["employment_status"])
-        print("The employee's gender:", employee["gender"])
-        print("The employee's driver's License(s):", employee["drivers_license"])
-        print("The employee's religion:", employee["religion"])
-        print("The employee's health insurance:", employee["health_insurance"])
-        print("The employee's marital status:", employee["marital_status"])
-        print("The employee's salary:", employee["salary"])
-        print("The employee's e-mail address:", employee["email"])
-        print("The employee's superior:", employee["superior"])
-        print("The employee's entry date:", employee["entry_date"].date())
-        print("\n")
-        counter += 1
-
-
 def update_menu():
     while True:
         print_choose()
