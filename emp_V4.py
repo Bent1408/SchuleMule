@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, BOTH, RIDGE, HORIZONTAL, messagebox
 from tkinter.constants import E
 import urllib.request
+import os
 
 global firstname, lastname, birthday, address, department, phone, gender, dl, religion, hi, marital, email
 global superior, entry, identification
@@ -136,9 +137,11 @@ def import_information():
                  'Birthday': birthday, 'Address': address, 'Gender': gender, 'Phone#': phone, 'Religion': religion,
                  'Health Ins.': hi, 'Marital St.': marital, 'DL': dl, 'Email': email, 'Superior': superior}]
 
-    file = open("employee_file.txt", "a")
-    file.write(str(employee) + "\n")
-    file.close()
+    path = "employee_file.txt"
+    mode = "a" if os.path.exists(path) else "w"
+    with open(path, mode) as f:
+        f.write(str(employee) + "\n")
+        f.close()
 
 
 def open_file():
@@ -245,7 +248,7 @@ tk.Button(frame_1, text="create", command=create_menu, bg="gray80").pack(side="t
 tk.Button(frame_1, text="read", command=read_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="update", command=update_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="delete", command=delete_menu, bg="gray80").pack(side="top", fill="x", padx="5")
-tk.Button(frame_1, text="save and export", command=export_menu, bg="gray80").pack(side="top", fill="x", padx="5")
+tk.Button(frame_1, text="export", command=export_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="close program", command=exit, bg="tomato").pack(side="top", fill="x", padx="5")
 
 gui.mainloop()
