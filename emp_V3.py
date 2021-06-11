@@ -1,5 +1,4 @@
 # My EMP will be saved as a simple text file. This makes it easy for everyone to open, read and edit it.
-import datetime
 
 
 def print_choose():
@@ -39,9 +38,7 @@ def create_menu():
 
 
 def add_employee():
-    global employees
     # Instructions output
-    f = open("all_employees.txt", "a")
     print("Please add the employee data!")
     import datetime
     firstname = str(input("please enter the firstname of the employee:"))

@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk, BOTH, RIDGE, HORIZONTAL, Scrollbar, messagebox
-from tkinter.constants import E, EW, RIGHT, W
+from tkinter import ttk, BOTH, RIDGE, HORIZONTAL, messagebox
+from tkinter.constants import E
 import urllib.request
+import os
 
 global firstname, lastname, birthday, address, department, phone, gender, dl, religion, hi, marital, email
 global superior, entry, identification
@@ -136,9 +137,11 @@ def import_information():
                  'Birthday': birthday, 'Address': address, 'Gender': gender, 'Phone#': phone, 'Religion': religion,
                  'Health Ins.': hi, 'Marital St.': marital, 'DL': dl, 'Email': email, 'Superior': superior}]
 
-    file = open("employee_file.txt", "a")
-    file.write(str(employee) + "\n")
-    file.close()
+    path = "employee_file.txt"
+    mode = "a" if os.path.exists(path) else "w"
+    with open(path, mode) as f:
+        f.write(str(employee) + "\n")
+        f.close()
 
 
 def open_file():
@@ -169,10 +172,26 @@ def open_employee_file():
     f.close()
 
 
+def export_all():
+    clear_frame2()
+
+    tk.Button(frame_2, text="CSV", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Json", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="MP3", command=error).pack(side="top", fill="x", padx="5")
+
+
+def export_single():
+    clear_frame2()
+
+    tk.Button(frame_2, text="CSV", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Json", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="MP3", command=error).pack(side="top", fill="x", padx="5")
+
+
 def read_menu():
     clear_frame2()
 
-    tk.Button(frame_2, text="Show all datasets", command=open_file).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Show all datasets", command=open_employee_file).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Show single dataset", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Show empty fields", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="filter...", command=error).pack(side="top", fill="x", padx="5")
@@ -189,10 +208,12 @@ def delete_menu():
     clear_frame2()
 
     tk.Button(frame_2, text="Delete all", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Delete employee", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single row", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single column", command=error).pack(side="top", fill="x", padx="5")
 
 
+<<<<<<< HEAD
 # search by first name???
 def check():
     global firstname
@@ -208,6 +229,13 @@ if check():
     print('True, the employee exists')
 else:
     print('False, the employee does not exist')
+=======
+def export_menu():
+    clear_frame2()
+
+    tk.Button(frame_2, text="export all as...", command=export_all).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="export single as...", command=export_single).pack(side="top", fill="x", padx="5")
+>>>>>>> e2581ed5cd3c19b21e82e9935699d656de2c5ea7
 
 
 # Main window configuration
@@ -238,7 +266,7 @@ tk.Button(frame_1, text="create", command=create_menu, bg="gray80").pack(side="t
 tk.Button(frame_1, text="read", command=read_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="update", command=update_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="delete", command=delete_menu, bg="gray80").pack(side="top", fill="x", padx="5")
-tk.Button(frame_1, text="save and export", command=error, bg="gray80").pack(side="top", fill="x", padx="5")
+tk.Button(frame_1, text="export", command=export_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="close program", command=exit, bg="tomato").pack(side="top", fill="x", padx="5")
 
 gui.mainloop()
