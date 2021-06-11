@@ -1,6 +1,6 @@
 import tkinter as tk
-from tkinter import ttk, BOTH, RIDGE, HORIZONTAL, Scrollbar, messagebox
-from tkinter.constants import E, EW, RIGHT, W
+from tkinter import ttk, BOTH, RIDGE, HORIZONTAL, messagebox
+from tkinter.constants import E
 import urllib.request
 
 global firstname, lastname, birthday, address, department, phone, gender, dl, religion, hi, marital, email
@@ -169,6 +169,22 @@ def open_employee_file():
     f.close()
 
 
+def export_all():
+    clear_frame2()
+
+    tk.Button(frame_2, text="CSV", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Json", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="MP3", command=error).pack(side="top", fill="x", padx="5")
+
+
+def export_single():
+    clear_frame2()
+
+    tk.Button(frame_2, text="CSV", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="Json", command=error).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="MP3", command=error).pack(side="top", fill="x", padx="5")
+
+
 def read_menu():
     clear_frame2()
 
@@ -191,6 +207,13 @@ def delete_menu():
     tk.Button(frame_2, text="Delete all", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single row", command=error).pack(side="top", fill="x", padx="5")
     tk.Button(frame_2, text="Delete single column", command=error).pack(side="top", fill="x", padx="5")
+
+
+def export_menu():
+    clear_frame2()
+
+    tk.Button(frame_2, text="export all as...", command=export_all).pack(side="top", fill="x", padx="5")
+    tk.Button(frame_2, text="export single as...", command=export_single).pack(side="top", fill="x", padx="5")
 
 
 # Main window configuration
@@ -221,7 +244,7 @@ tk.Button(frame_1, text="create", command=create_menu, bg="gray80").pack(side="t
 tk.Button(frame_1, text="read", command=read_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="update", command=update_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="delete", command=delete_menu, bg="gray80").pack(side="top", fill="x", padx="5")
-tk.Button(frame_1, text="save and export", command=error, bg="gray80").pack(side="top", fill="x", padx="5")
+tk.Button(frame_1, text="save and export", command=export_menu, bg="gray80").pack(side="top", fill="x", padx="5")
 tk.Button(frame_1, text="close program", command=exit, bg="tomato").pack(side="top", fill="x", padx="5")
 
 gui.mainloop()
