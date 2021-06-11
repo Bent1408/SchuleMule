@@ -1,9 +1,6 @@
 # My EMP will be saved as a simple text file. This makes it easy for everyone to open, read and edit it.
 import datetime
 
-# list of all saved employees
-employees = []
-
 
 def print_choose():
     print("Please choose one of the following options:")
@@ -80,15 +77,20 @@ def add_employee():
                  'martial_status': marital, 'Email': email, 'superior': superior, 'date_entry': date_entry_2, 'date2':
                      date2, 'identification': identification, age: "age"}]
 
-    employees = employees + employee
+    # writes the created employee into a text file
+    file = open("employee_file.txt", "a")
+    file.write(str(employee) + "\n")
+    file.close()
 
-    # Confirmation
-    print()
-    print("The employee", firstname, lastname, "was added successfully.")
-    # writing and closing the added employee
-    f.write(str(employee) + "\n")
+   
+def open_employee_file():
+    # opens the text file where the employees are saved and prints each line
+    f = open("employee_file.txt", "r")
+    r = f.readlines()
+    for element in r:
+        print(element)
     f.close()
-
+    
 
 def read_menu():
     while True:
@@ -97,12 +99,7 @@ def read_menu():
               "4. show empty fields\n5. back")
         selection = choose_between(1, 5)
         if selection == "1":
-            # opening and showing the list of all employees
-            j = open("all_employees.txt", "r")
-            d = j.readlines()
-            for element in d:
-                print(element)
-            j.close()
+            open_employee_file()
         elif selection == "2":
             print_not_developed()
         elif selection == "3":
